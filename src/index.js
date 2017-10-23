@@ -1,6 +1,6 @@
-const $ = require('jQuery')
-require('./lib/words')
+const $    = require('jQuery')
+const Words = require('./lib/words')
 
 $(document).ready(() => {
-  alert("Ready?")// have fun!
+  Words.getTopWord();
 })
