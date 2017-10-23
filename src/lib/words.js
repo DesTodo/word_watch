@@ -6,22 +6,16 @@ const postWordUrl = 'words'
 
 class Words {
 
-  // For story 2,
-  // each word should be sent via POST request
-  // to the Word Watch API. See https://github.com/tmikeschu/wordwatch_api for details.
-  // PO
-
   static postWord(inputWord){
-    let data = { word: { value: "sample" } }
-    $.post(`${baseURL}${postWordUrl}`, data){
-    .then(data){
-      console.log(data)
-    }}
-  }
+    let data = { word: { value: inputWord } }
+    $.ajax({
+      url: `${baseURL}${postWordUrl}`,
+      context: data
+    }).done(function() {
+      alert(data);
+    })
 
   static inputWordCount(){ // start breakdownword count function
-
-    //let inputText =
 
     let inputEach = $('.input-value').val.split("") // split input words
     debugger
@@ -34,17 +28,17 @@ class Words {
     for (var property in word){
       if (word.hasOwnProperty(property)) {
         let diplayInput = $(".word-count") // append to right side of page
-        displayInput.append(`<p style= ${wordCount[property]} em> ${property} </p>`) //make input relative to frequency
-      }
+      displayInput.append(`<p style= ${wordCount[property]} em> ${property} </p>`) //make input relative to frequency
+      Words.postWord(property)
+    }
+       //add post AJAX call to send each word
     }
   }  //end breakdown count function
+
 
   // static submitInput(){ // start submitInput
   //   alert('clicked')
   //   $('.input-button').on('click', inputWordCount() )} //end  submitInput
-
-
-
 
   static getTopWord(){ // start getTopWord method
     this.makeApiCall()
@@ -60,12 +54,6 @@ class Words {
   static makeApiCall(){ // start get AJAX call to pass to getTopWord method
     return $.getJSON(`${baseURL}${topWordUrl}`)
   } //end AJAX call get
-
-
-
-
-
-
 } // end class Words constructor
 
 module.exports = Words
