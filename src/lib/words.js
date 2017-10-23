@@ -1,24 +1,47 @@
-const $          = require('jQuery')
-const baseURL    = 'https://wordwatch-api.herokuapp.com/api/v1/' // slash included!
-const topWordUrl = 'top_word'
+const $           = require('jQuery')
+const baseURL     = 'https://wordwatch-api.herokuapp.com/api/v1/' // slash included!
+const topWordUrl  = 'top_word'
+const postWordUrl = 'words'
 //const htmlBuilder = require('./lib/htmlBuilder')
 
 class Words {
 
+  // For story 2,
+  // each word should be sent via POST request
+  // to the Word Watch API. See https://github.com/tmikeschu/wordwatch_api for details.
+  // PO
 
-  // and paste a paragraph into the "Paste text here" textarea
-  // and I click "Break down"
-  // Then I should see text appear on the right side of the page
-  // With each word from the paragraph only shown once
-  // and the size of each word is relative to its frequency in the paragraph.
+  static postWord(inputWord){
+    let data = { word: { value: "sample" } }
+    $.post(`${baseURL}${postWordUrl}`, data){
+    .then(data){
+      console.log(data)
+    }}
+  }
 
+  static inputWordCount(){ // start breakdownword count function
 
+    //let inputText =
 
+    let inputEach = $('.input-value').val.split("") // split input words
+    debugger
+    let wordCount = {}
+    alert(`${inputCount}`)
+    inputCount.forEach((word) => {
+      word = word.toLowerCase()
+      return wordCount[word] = wordCount[word] + 1 || 1 // keep word count
+    })
+    for (var property in word){
+      if (word.hasOwnProperty(property)) {
+        let diplayInput = $(".word-count") // append to right side of page
+        displayInput.append(`<p style= ${wordCount[property]} em> ${property} </p>`) //make input relative to frequency
+      }
+    }
+  }  //end breakdown count function
 
-
-
-
-
+  // static submitInput(){ // start submitInput
+  //   alert('clicked')
+  //   $('.input-button').on('click', inputWordCount() )} //end  submitInput
 
 
 
