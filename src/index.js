@@ -4,4 +4,8 @@ const Words = require('./lib/words')
 
 $(document).ready(() => {
   Words.getTopWord();
+
+  $('button').on('click',() => {
+    alert( "Handler for .click() called." )
+  })
 })
